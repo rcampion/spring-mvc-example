@@ -24,9 +24,6 @@ import com.rkc.zds.service.AuthenticationService;
 @Controller
 public class UserController {
 
-	//@Autowired
-	//private SecurityService securityService;
-
     @Autowired
     private AuthenticationService authenticationService;
     
@@ -43,7 +40,6 @@ public class UserController {
 			return "login";
 		}
 		
-		//securityService.autologin(user.getUserName(), user.getPassword());
 	   	LoginDto loginDTO = new LoginDto();
 	   	
 	   	loginDTO.setLogin(user.getUserName());
