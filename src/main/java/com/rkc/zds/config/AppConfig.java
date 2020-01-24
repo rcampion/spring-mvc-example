@@ -26,7 +26,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan(basePackages = { "com.rkc.zds", "com.rkc.zds.service" }, excludeFilters = { @ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION) })
+// @ComponentScan(basePackages = { "com.rkc.zds", "com.rkc.zds.service" }, excludeFilters = { @ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION) })
+// @ComponentScan(basePackages = { "com.rkc.zds" })
+@ComponentScan(basePackages = { "com.rkc.zds"  })
 @EnableJpaRepositories(basePackages = { "com.rkc.zds" })
 @EnableTransactionManagement
 @EnableSpringDataWebSupport

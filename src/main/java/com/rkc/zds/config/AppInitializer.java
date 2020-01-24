@@ -3,9 +3,12 @@ package com.rkc.zds.config;
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.FilterChainProxy;
@@ -15,17 +18,39 @@ import org.springframework.security.web.context.SecurityContextPersistenceFilter
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import com.rkc.zds.config.security.SecurityConfiguration;
 //import com.rkc.zds.config.security.hmac.HmacSecurityConfigurer;
 //import com.rkc.zds.config.security.hmac.HmacSecurityConfigurer;
 
 @Configuration
+@EnableWebMvc
 @EnableWebSecurity
+@ComponentScan(basePackages = { "com.rkc.zds"  })
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+// public class AppInitializer extends AbstractDispatcherServletInitializer {
+// public class AppInitializer implements WebApplicationInitializer {
+/*
+    @Override
+    public void onStartup(ServletContext container) throws ServletException {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
 
+        context.scan("com.rkc.zds");
+
+        container.addListener(new ContextLoaderListener(context));
+
+        ServletRegistration.Dynamic dispatcher = container.addServlet("mvc", new DispatcherServlet(context));
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/");
+    }
+*/    
 	@Bean
 	public SecurityContextRepository securityContextRepository() {
 	    return new HttpSessionSecurityContextRepository();
@@ -85,4 +110,5 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
+
 }

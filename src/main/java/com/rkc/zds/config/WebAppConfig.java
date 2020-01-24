@@ -21,9 +21,9 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @EnableWebSecurity
-@ComponentScan(basePackages = { "com.rkc.zds", "com.rkc.zds.service"  })
+@ComponentScan(basePackages = { "com.rkc.zds"  })
 public class WebAppConfig implements WebMvcConfigurer {
-
+// public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
