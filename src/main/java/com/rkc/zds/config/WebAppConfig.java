@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -20,10 +19,9 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@EnableWebSecurity
-@ComponentScan(basePackages = { "com.rkc.zds"  })
+@ComponentScan(basePackages = { "com.rkc.zds", "com.rkc.zds.service"  })
 public class WebAppConfig implements WebMvcConfigurer {
-// public class WebAppConfig extends WebMvcConfigurerAdapter {
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
@@ -82,4 +80,3 @@ public class WebAppConfig implements WebMvcConfigurer {
 	}
 
 }
-
